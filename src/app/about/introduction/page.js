@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Introduction() {
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 text-gray-700 pt-24 leading-relaxed">
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 text-gray-700 pt-50 leading-relaxed">
       {/* Section: Location and Affiliation */}
       <section className="mb-16">
         <h2 className="text-lg mb-3  text-gray-700">

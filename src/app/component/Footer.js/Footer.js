@@ -1,35 +1,44 @@
+"use client";
+
 import Image from "next/image";
-// import { FaHome, FaPhone } from "react-icons/fa";
+import { FaHome, FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3a3a3a] text-white py-10 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
-        {/* Left Logo Section */}
+    <footer className="bg-[#3b3b3b] text-white py-10 px-6 md:px-16 lg:px-24">
+      {/* Main wrapper */}
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center md:items-center gap-10">
+        {/* Logo */}
         <div className="flex justify-center md:justify-start">
           <Image
-            src="" // replace with your image path (e.g., /public/cross-logo.png)
+            src="/footer/footer-logo.png"
             alt="Church Logo"
-            className="w-48 md:w-56"
+            width={250}
+            height={250}
+            className="object-contain md:w-[250px] w-[200px]"
           />
         </div>
 
-        {/* Middle Location Section */}
-        <div className="text-center md:text-left">
-          <h2 className="text-xl font-semibold mb-3">Our Location</h2>
+        {/* Location & contact info */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left leading-relaxed">
+          <h2 className="text-[22px] font-semibold mb-4 text-white">
+            Our Location
+          </h2>
 
-          <div className="flex items-start gap-3 mb-2">
-            <div className="text-2xl text-white mt-1" />
-            <div className="text-gray-200 leading-6">
+          {/* Address */}
+          <div className="flex items-start justify-center md:justify-start gap-3 mb-4">
+            <FaHome className="text-[22px] mt-1 text-white" />
+            <div className="text-gray-200 text-[17px] space-y-[1px]">
               <p>310 Main St</p>
               <p>PO Box 694</p>
               <p>Baudette, MN 56623</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3 mb-1">
-            <div className="text-2xl text-white mt-1" />
-            <div className="text-gray-200 space-y-1">
+          {/* Phone Numbers */}
+          <div className="flex items-start justify-center md:justify-start gap-3">
+            <FaPhoneAlt className="text-[22px] mt-1 text-white" />
+            <div className="text-gray-200 text-[17px] space-y-[4px]">
               <p>
                 <span className="font-semibold text-white">Parsonage:</span>{" "}
                 (218) 634-2808
@@ -46,38 +55,40 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Right Map Section */}
-        <div className="rounded overflow-hidden border-2 border-gray-500">
+        {/* Google Map */}
+        <div className="border border-gray-500 rounded overflow-hidden shadow-sm">
           <iframe
-            src="https://www.google.com/maps?q=Baudette%20MN&output=embed"
-            width="280"
-            height="220"
+            src="https://www.google.com/maps?q=Bethlehem%20Lutheran%20Church%20Baudette%20MN&output=embed"
+            width="320"
+            height="230"
             loading="lazy"
-            className="rounded-md"
+            className="rounded-md md:w-[320px] md:h-[230px] w-[260px] h-[200px]"
           ></iframe>
         </div>
       </div>
 
-      {/* Bottom Copyright */}
-      <div className="text-center mt-10 text-gray-300 text-sm">
+      {/* Bottom copyright */}
+      <div className="text-center mt-10 text-gray-300 text-[15px] tracking-wide">
         Copyright © 2025 Bethlehem Lutheran Church
       </div>
 
-      {/* Scroll to top button */}
-      <div className="fixed bottom-5 right-5 bg-black hover:bg-gray-700 text-white p-3 rounded-md cursor-pointer transition">
-        <a href="#top" aria-label="Back to top">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-          </svg>
-        </a>
-      </div>
+      {/* Scroll to Top */}
+      <a
+        href="#top"
+        aria-label="Back to top"
+        className="fixed bottom-5 right-5 bg-black hover:bg-gray-700 text-white p-3 rounded-md cursor-pointer transition-all duration-300 shadow-lg"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-5 h-5"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+      </a>
     </footer>
   );
 }

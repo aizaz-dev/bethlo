@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react"; // for hamburger icons
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -11,16 +12,18 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // ✅ Shrink only once when scrolling down
+  // ✅ Detect scroll to shrink navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80 && !scrolled) {
+      if (window.scrollY > 80) {
         setScrolled(true);
+      } else {
+        setScrolled(false);
       }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrolled]);
+  }, []);
 
   const links = [
     { name: "Home", href: "/" },
@@ -42,48 +45,34 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-in-out ${
         scrolled
-          ? "bg-[#97A8C4]/60 backdrop-blur-sm py-2 shadow-md"
-          : "bg-[#97A8C4] py-6 shadow-md"
+          ? "bg-[#97A8C4]/60 backdrop-blur-sm py-1 shadow-md"
+          : "bg-[#97A8C4] py-3 shadow-md"
       }`}
     >
       <div
-        className={`max-w-[1300px] mx-auto flex justify-between items-center px-4 sm:px-8 transition-all duration-700`}
+        className={`max-w-[1300px] mx-auto flex justify-between items-start px-4 sm:px-8 transition-all duration-700`}
       >
-        {/* LEFT SIDE - Logo Section */}
+        {/* ✅ LEFT SIDE - Logo Image */}
         <div
-          className={`flex flex-col text-left leading-tight transition-all duration-700 ${
-            scrolled ? "translate-y-1 scale-95" : ""
+          className={`flex items-start transition-all duration-700 ${
+            scrolled ? "scale-90 translate-y-[-2px]" : "scale-100 translate-y-0"
           }`}
         >
-          <h1
-            className={`text-[34px] sm:text-[40px] font-[cursive] text-black tracking-wide transition-all duration-700 ${
-              scrolled ? "text-[26px]" : ""
-            }`}
-          >
-            Bethlehem
-          </h1>
-
-          {/* Hide tagline when scrolled */}
-          <div
-            className={`overflow-hidden transition-all duration-700 ease-in-out ${
-              scrolled ? "max-h-0 opacity-0" : "max-h-40 opacity-100"
-            }`}
-          >
-            <h2 className="text-[16px] sm:text-[18px] font-bold uppercase text-black -mt-2">
-              Lutheran Church
-            </h2>
-            <p className="text-[14px] sm:text-[15px] font-semibold text-[#2f2f2f] mt-1">
-              Missouri Synod
-            </p>
-            <p className="text-[12px] sm:text-[13px] text-[#d8dbe2] mt-1 max-w-[280px] sm:max-w-[300px]">
-              Walking Together With The Joy Of Salvation Through Christ
-            </p>
-          </div>
+          <Link href="/">
+            <Image
+              src="/logo/logo.png"
+              alt="Bethlehem Lutheran Church Logo"
+              width={scrolled ? 200 : 300}
+              height={scrolled ? 200 : 300}
+              priority
+              className="transition-all duration-700"
+            />
+          </Link>
         </div>
 
-        {/* RIGHT SIDE - Desktop Nav */}
-        <nav className="hidden lg:flex">
-          <ul className="flex items-center gap-6 xl:gap-8">
+        {/* ✅ RIGHT SIDE - Desktop Nav (slightly raised) */}
+        <nav className="hidden lg:flex mt-2"> {/* 👈 added top margin offset */}
+          <ul className="flex items-start gap-6 xl:gap-8">
             {links.map((link) => (
               <li
                 key={link.name}
@@ -93,7 +82,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`text-[15px] px-4 py-2 rounded-sm font-medium transition-all duration-300 ${
+                  className={`text-[16px] px-4 py-4 rounded-sm font-medium transition-all duration-300 ${
                     pathname === link.href
                       ? "bg-[#a7d3d5] text-black"
                       : "hover:text-gray-200"
@@ -102,6 +91,7 @@ export default function Navbar() {
                   {link.name}
                 </Link>
 
+                {/* Dropdown for Desktop */}
                 {link.dropdown && dropdownOpen === link.name && (
                   <ul className="absolute top-full left-0 bg-white text-black shadow-lg rounded-md mt-2 min-w-[180px] z-50 overflow-hidden transition-all duration-300">
                     {link.dropdown.map((item) => (
@@ -121,16 +111,16 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* ✅ MOBILE MENU BUTTON */}
         <button
-          className="lg:hidden text-black hover:scale-110 transition"
+          className="lg:hidden text-black hover:scale-110 transition mt-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
       </div>
 
-      {/* MOBILE DROPDOWN MENU */}
+      {/* ✅ MOBILE MENU */}
       {menuOpen && (
         <div className="lg:hidden bg-[#97A8C4]/95 backdrop-blur-sm shadow-md">
           <ul className="flex flex-col items-center py-4 space-y-3 text-[16px] font-medium">
@@ -148,7 +138,7 @@ export default function Navbar() {
                   {link.name}
                 </Link>
 
-                {/* Show dropdown items inside mobile menu */}
+                {/* Dropdown inside Mobile Menu */}
                 {link.dropdown && (
                   <ul className="flex flex-col items-center bg-white text-black w-full">
                     {link.dropdown.map((item) => (

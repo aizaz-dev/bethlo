@@ -14,7 +14,7 @@ export default function BelievePage() {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-24 text-gray-700 leading-relaxed">
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-gray-700 leading-relaxed">
       <h2 className="text-lg mb-3  text-gray-700">
         What We Believe
       </h2>
