@@ -30,8 +30,8 @@ function generateCalendar(year, month) {
 
 export default function CalendarPage() {
   const monthNames = [
-    "January","February","March","April","May","June",
-    "July","August","September","October","November","December"
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
 
   const [year, setYear] = useState(2025);
@@ -61,21 +61,20 @@ export default function CalendarPage() {
   }
 
   return (
-    <main className="max-w-7xl pt-50 mx-auto px-6 sm:px-8 py-12 text-gray-800">
-      
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-text-primary">
       {/* Top Heading */}
-      <h1 className="text-3xl font-semibold text-gray-700 mb-4">
+      <h1 className="text-3xl font-semibold text-primary mb-4 shadow-text-light">
         Calendar
       </h1>
 
       {/* Month + Year Row */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-700">
+        <h2 className="text-2xl font-semibold text-text-primary">
           {monthNames[month]} {year}
         </h2>
 
         <select
-          className="border border-gray-300 rounded text-sm px-3 py-2 bg-white focus:outline-none focus:ring-1 focus:ring-gray-400"
+          className="border border-border-light rounded text-sm px-3 py-2 bg-bg-card text-text-primary focus:outline-none focus:ring-1 focus:ring-primary"
           value={`${month}-${year}`}
           onChange={handleMonthChange}
         >
@@ -88,10 +87,10 @@ export default function CalendarPage() {
       </div>
 
       {/* Calendar Table */}
-      <div className="overflow-x-auto border border-gray-300 rounded-md shadow-sm">
+      <div className="overflow-x-auto border border-border-light rounded-md shadow-card-light bg-bg-card">
         <table className="w-full border-collapse text-[13px]">
           <thead>
-            <tr className="bg-gray-100 text-gray-700">
+            <tr className="bg-bg-light text-text-secondary">
               {[
                 "SUNDAY",
                 "MONDAY",
@@ -103,7 +102,7 @@ export default function CalendarPage() {
               ].map((day) => (
                 <th
                   key={day}
-                  className="text-left py-2 px-3 border border-gray-200 font-semibold uppercase"
+                  className="text-left py-2 px-3 border border-border-light font-semibold uppercase"
                 >
                   {day}
                 </th>
@@ -116,23 +115,22 @@ export default function CalendarPage() {
                 {week.map((day, j) => {
                   const dateKey = `${year}-${month}-${day < 10 ? "0" + day : day}`;
                   const event = events[dateKey];
-                  const isToday =
-                    year === 2025 && month === 10 && day === 12;
+                  const isToday = year === 2025 && month === 10 && day === 12;
 
                   return (
                     <td
                       key={j}
-                      className={`align-top h-28 w-[14.28%] border border-gray-200 p-2 transition ${
+                      className={`align-top h-28 w-[14.28%] border border-border-light p-2 transition ${
                         isToday
-                          ? "bg-gray-400 text-white"
-                          : "bg-[#f8f9fb]"
+                          ? "bg-primary text-white"
+                          : "bg-bg-light hover:bg-bg-hover"
                       }`}
                     >
                       {day && (
                         <>
                           <div
                             className={`text-sm font-semibold mb-1 ${
-                              isToday ? "text-white" : "text-gray-800"
+                              isToday ? "text-white" : "text-text-primary"
                             }`}
                           >
                             {day}
@@ -141,14 +139,14 @@ export default function CalendarPage() {
                             <div className="text-xs leading-tight">
                               <p
                                 className={`font-bold ${
-                                  isToday ? "text-white" : "text-gray-800"
+                                  isToday ? "text-white" : "text-text-secondary"
                                 }`}
                               >
                                 ALL DAY
                               </p>
                               <p
                                 className={`${
-                                  isToday ? "text-white" : "text-gray-800"
+                                  isToday ? "text-white" : "text-text-primary"
                                 }`}
                               >
                                 {event}

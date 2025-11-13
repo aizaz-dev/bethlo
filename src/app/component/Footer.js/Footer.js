@@ -5,9 +5,10 @@ import { FaHome, FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3b3b3b] text-white py-10 px-6 md:px-16 lg:px-24">
+    <footer className="border-t border-border-secondary text-text-primary py-10 px-6 md:px-16 lg:px-24 transition-colors">
       {/* Main wrapper */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center md:items-center gap-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center gap-10">
+        
         {/* Logo */}
         <div className="flex justify-center md:justify-start">
           <Image
@@ -21,14 +22,14 @@ export default function Footer() {
 
         {/* Location & contact info */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left leading-relaxed">
-          <h2 className="text-[22px] font-semibold mb-4 text-white">
+          <h2 className="text-[22px] font-semibold mb-4 text-text-primary">
             Our Location
           </h2>
 
           {/* Address */}
           <div className="flex items-start justify-center md:justify-start gap-3 mb-4">
-            <FaHome className="text-[22px] mt-1 text-white" />
-            <div className="text-gray-200 text-[17px] space-y-[1px]">
+            <FaHome className="text-[22px] mt-1 text-accent" />
+            <div className="text-text-secondary text-[17px] space-y-[1px]">
               <p>310 Main St</p>
               <p>PO Box 694</p>
               <p>Baudette, MN 56623</p>
@@ -37,18 +38,18 @@ export default function Footer() {
 
           {/* Phone Numbers */}
           <div className="flex items-start justify-center md:justify-start gap-3">
-            <FaPhoneAlt className="text-[22px] mt-1 text-white" />
-            <div className="text-gray-200 text-[17px] space-y-[4px]">
+            <FaPhoneAlt className="text-[22px] mt-1 text-accent" />
+            <div className="text-text-secondary text-[17px] space-y-[4px]">
               <p>
-                <span className="font-semibold text-white">Parsonage:</span>{" "}
+                <span className="font-semibold text-text-primary">Parsonage:</span>{" "}
                 (218) 634-2808
               </p>
               <p>
-                <span className="font-semibold text-white">Pastor Cell:</span>{" "}
+                <span className="font-semibold text-text-primary">Pastor Cell:</span>{" "}
                 (320) 248-1894
               </p>
               <p>
-                <span className="font-semibold text-white">Church:</span>{" "}
+                <span className="font-semibold text-text-primary">Church:</span>{" "}
                 (218) 386-3555
               </p>
             </div>
@@ -56,7 +57,7 @@ export default function Footer() {
         </div>
 
         {/* Google Map */}
-        <div className="border border-gray-500 rounded overflow-hidden shadow-sm">
+        <div className="border border-border-secondary rounded overflow-hidden shadow-card-light dark:shadow-card-dark transition-shadow">
           <iframe
             src="https://www.google.com/maps?q=Bethlehem%20Lutheran%20Church%20Baudette%20MN&output=embed"
             width="320"
@@ -68,15 +69,15 @@ export default function Footer() {
       </div>
 
       {/* Bottom copyright */}
-      <div className="text-center mt-10 text-gray-300 text-[15px] tracking-wide">
-        Copyright © 2025 Bethlehem Lutheran Church
+      <div className="text-center mt-10 text-text-secondary text-[15px] tracking-wide">
+        © 2025 Bethlehem Lutheran Church
       </div>
 
       {/* Scroll to Top */}
       <a
         href="#top"
         aria-label="Back to top"
-        className="fixed bottom-5 right-5 bg-black hover:bg-gray-700 text-white p-3 rounded-md cursor-pointer transition-all duration-300 shadow-lg"
+        className="fixed bottom-5 right-5 bg-accent hover:opacity-85 text-bg-card p-3 rounded-md cursor-pointer transition-all duration-300 shadow-card-light dark:shadow-card-dark"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

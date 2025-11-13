@@ -14,14 +14,16 @@ export default function CommunionPage() {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-gray-700 leading-relaxed">
-      <h2 className="text-lg mb-3  text-gray-700">
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-text-primary leading-relaxed">
+      <h2 className="text-lg mb-3 text-text-primary">
         Communing with Us
       </h2>
 
       <div className="space-y-8 text-lg">
         {paragraphs.map((para, index) => (
-          <p key={index}>{para}</p>
+          <p key={index} className="text-text-primary">
+            {para}
+          </p>
         ))}
       </div>
     </main>

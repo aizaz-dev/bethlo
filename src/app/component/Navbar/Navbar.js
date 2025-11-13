@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -62,14 +63,14 @@ export default function Navbar() {
             <Image
               src="/logo/logo.png"
               alt="Bethlehem Lutheran Church Logo"
-              width={scrolled ? 200 : 300}
-              height={scrolled ? 200 : 300}
+              width={scrolled ? 150 : 300}
+              height={scrolled ? 150 : 300}
               priority
               className="transition-all duration-700"
             />
           </Link>
         </div>
-
+          <ThemeToggle />
         {/* ✅ RIGHT SIDE - Desktop Nav (slightly raised) */}
         <nav className="hidden lg:flex mt-2"> {/* 👈 added top margin offset */}
           <ul className="flex items-start gap-6 xl:gap-8">

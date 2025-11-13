@@ -14,16 +14,16 @@ export default function BelievePage() {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-gray-700 leading-relaxed">
-      <h2 className="text-lg mb-3  text-gray-700">
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 mt-50 prose">
+      <h2 className="text-lg mb-3 font-semibold text-text-primary shadow-text-light">
         What We Believe
       </h2>
 
       {paragraphs.map((text, index) => (
-        <p key={index} className="mb-8 text-lg">
+        <p key={index} className="mb-8 text-lg text-text-primary leading-relaxed shadow-text-light">
           {text.split('*').map((segment, i) =>
             i % 2 === 1 ? (
-              <em key={i} className="italic text-gray-900">
+              <em key={i} className="italic text-primary font-medium">
                 {segment}
               </em>
             ) : (
