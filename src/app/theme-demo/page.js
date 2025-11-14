@@ -86,4 +86,10 @@ export default function ThemeDemo() {
     </div>
   );
 }
+export const metadata = {
+  title: "Theme Demo",
+  description: "Showcase of theme selector components.",
+  alternates: { canonical: "/theme-demo" },
+  robots: { index: false, follow: false },
+};
 

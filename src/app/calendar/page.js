@@ -35,11 +35,11 @@ export default function CalendarPage() {
   const [month, setMonth] = useState(10);
 
   const events = {
-    "2025-11-02": "Daylight Saving Time ends",
-    "2025-11-04": "Election Day",
-    "2025-11-11": "Veterans Day",
-    "2025-11-27": "Thanksgiving Day",
-    "2025-11-28": "Black Friday",
+    "2025-11-02": { title: "Daylight Saving Time ends", type: "Observance", description: "Clocks are set back one hour." },
+    "2025-11-04": { title: "Election Day", type: "Observance", description: "General elections across the United States." },
+    "2025-11-11": { title: "Veterans Day", type: "Federal holiday", description: "Honors military veterans." },
+    "2025-11-27": { title: "Thanksgiving Day", type: "Federal holiday", description: "Family gatherings and gratitude." },
+    "2025-11-28": { title: "Black Friday", type: "Observance", description: "Retail sales following Thanksgiving." },
   };
 
   const calendar = generateCalendar(year, month);
@@ -82,13 +82,14 @@ export default function CalendarPage() {
       </div>
 
       <div className="overflow-x-auto bg-bg-card border border-calendar-border rounded-md">
-        <table className="w-full text-xs sm:text-[13px] border-collapse min-w-[600px]">
+        <table className="w-full table-fixed text-xs sm:text-[13px] border-collapse min-w-[700px]">
           <thead>
-            <tr className="bg-calendar-header text-black dark:text-white">
+            <tr className="bg-calendar-header text-text-primary">
               {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((day) => (
                 <th 
                   key={day} 
                   className="py-2 px-1 sm:px-3 text-center border border-calendar-border text-[11px] sm:text-[12px] font-semibold uppercase"
+                  style={{ width: `${100 / 7}%` }}
                 >
                   {day}
                 </th>
@@ -117,19 +118,29 @@ export default function CalendarPage() {
                     <td
                       key={j}
                       className="h-16 sm:h-20 md:h-24 align-top border border-calendar-border p-0 bg-bg-card"
+                      style={{ width: `${100 / 7}%` }}
                     >
                       <div className="h-full flex flex-col">
-                        <div className={`p-1 sm:p-2 ${isHighlight ? "bg-primary" : "bg-calendar-bg"}`}>
-                          <span className={`text-xs sm:text-sm font-semibold ${isHighlight ? "text-white" : "text-date-text"}`}>
+                        <div className="p-2">
+                          <span className="text-xs sm:text-sm font-semibold text-date-text">
                             {day}
                           </span>
                         </div>
 
                         {event && (
                           <div className="flex-1 p-1 sm:p-2">
-                            <div className="text-xs leading-tight">
+                            <div className="relative group text-xs leading-tight">
                               <p className="font-bold text-event-text">ALL DAY</p>
-                              <p className="text-date-text truncate">{event}</p>
+                              <p className="text-date-text truncate">{event.title}</p>
+
+                              <div className="absolute left-2 top-6 z-20 w-64 sm:w-72 bg-bg-card border border-calendar-border rounded-md shadow-card-light dark:shadow-card-dark p-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                <p className="text-text-primary font-semibold text-sm">{event.title}</p>
+                                <p className="text-text-secondary text-xs mt-1">{event.type || "Event"}</p>
+                                {event.description && (
+                                  <p className="text-text-muted text-xs mt-1">{event.description}</p>
+                                )}
+                                <p className="text-text-muted text-[11px] mt-2">All day</p>
+                              </div>
                             </div>
                           </div>
                         )}

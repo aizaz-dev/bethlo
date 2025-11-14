@@ -41,7 +41,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-in-out ${
         scrolled
-          ? "bg-[#8CA0C4]/60 backdrop-blur-sm py-1 shadow-md"
+          ? "bg-[#8CA0C4]/60 backdrop-blur-sm shadow-md"
           : "bg-[#8CA0C4] shadow-md"
       }`}
     >
@@ -52,12 +52,12 @@ export default function Navbar() {
             scrolled ? "scale-90 translate-y-[-2px]" : "scale-100 translate-y-0"
           }`}
         >
-          <Link href="/">
+          <Link href="/" className="cursor-pointer">
             <Image
               src="/logo/logo.png"
               alt="Bethlehem Lutheran Church Logo"
-              width={scrolled ? 150 : 370}
-              height={scrolled ? 150 : 370}
+              width={scrolled ? 130 : 370}
+              height={scrolled ? 100 : 300}
               priority
               className="transition-all duration-700"
             />
@@ -66,7 +66,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex">
-          <ul className="flex items-start gap-6 xl:gap-8">
+          <ul className="flex items-start gap-0">
             {links.map((link) => (
               <li
                 key={link.name}
@@ -85,7 +85,7 @@ export default function Navbar() {
                     href={link.href}
                     className={`text-[17px] ${
                       pathname === link.href ? "font-semibold" : ""
-                    }`}
+                    } cursor-pointer`}
                   >
                     {link.name}
                   </Link>
@@ -106,7 +106,7 @@ export default function Navbar() {
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="block px-4 py-2 hover:bg-[#a7d3d5] hover:text-black transition"
+                          className="block px-4 py-2 hover:bg-[#a7d3d5] hover:text-black transition cursor-pointer"
                         >
                           {item.name}
                         </Link>
@@ -123,7 +123,7 @@ export default function Navbar() {
           <ThemeToggle />
           
           <button
-            className="lg:hidden text-white hover:scale-110 transition mt-2 flex items-center gap-1"
+            className="lg:hidden text-white hover:scale-110 transition mt-2 flex items-center gap-1 cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? (
@@ -140,11 +140,11 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden bg-[#97A8C4]/95 backdrop-blur-sm shadow-md">
-          <ul className="flex flex-col items-center py-4 space-y-3 text-[16px] font-medium">
+          <ul className="flex flex-col items-stretch py-2 text-[16px] font-medium divide-y divide-white/25">
             {links.map((link) => (
               <li key={link.name} className="relative text-center w-full">
                 <div 
-                  className={`flex items-center justify-center w-full px-4 py-2 cursor-pointer transition-all duration-300 gap-2 ${
+                  className={`flex items-center justify-between w-full px-4 py-3 cursor-pointer transition-all duration-300 ${
                     pathname === link.href
                       ? "bg-[#76C7CF] text-white"
                       : "hover:bg-[#76C7CF] text-white"
@@ -157,7 +157,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`${pathname === link.href ? "font-semibold" : ""}`}
+                    className={`flex-1 text-left ${pathname === link.href ? "font-semibold" : ""}`}
                     onClick={(e) => {
                       if (link.dropdown) {
                         e.preventDefault();
@@ -171,6 +171,7 @@ export default function Navbar() {
 
                   {link.dropdown && (
                     <button
+                      className="p-2 cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         setMobileDropdown(
@@ -189,12 +190,12 @@ export default function Navbar() {
                 </div>
 
                 {link.dropdown && mobileDropdown === link.name && (
-                  <ul className="flex flex-col items-center bg-white text-black w-full animate-fadeIn">
+                  <ul className="flex flex-col bg-white text-black w-full animate-fadeIn">
                     {link.dropdown.map((item) => (
                       <li key={item.name} className="w-full">
                         <Link
                           href={item.href}
-                          className="block w-full px-4 py-2 hover:bg-[#a7d3d5]/50 transition text-center"
+                          className="block w-full px-6 py-3 hover:bg-[#a7d3d5]/50 transition text-left"
                           onClick={() => setMenuOpen(false)}
                         >
                           {item.name}

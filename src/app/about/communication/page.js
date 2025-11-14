@@ -29,3 +29,10 @@ export default function CommunionPage() {
     </main>
   );
 }
+export const metadata = {
+  title: "Communing with Us",
+  description: "Guidelines and information for receiving Holy Communion at Bethlehem Lutheran Church.",
+  keywords: ["Communion", "Eucharist", "Closed communion", "Guidelines", "LCMS", "Bethlehem Lutheran Church"],
+  alternates: { canonical: "/about/communication" },
+  openGraph: { title: "Communing with Us", url: "/about/communication", images: ["/og-default.jpg"] },
+};

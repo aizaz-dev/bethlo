@@ -68,3 +68,10 @@ export default function Introduction() {
     </main>
   );
 }
+export const metadata = {
+  title: "Introduction",
+  description: "Learn about our location, affiliation, and pastor at Bethlehem Lutheran Church.",
+  keywords: ["Introduction", "Location", "Affiliation", "Pastor", "Bethlehem Lutheran Church", "Baudette", "LCMS"],
+  alternates: { canonical: "/about/introduction" },
+  openGraph: { title: "Introduction", url: "/about/introduction", images: ["/og-default.jpg"] },
+};

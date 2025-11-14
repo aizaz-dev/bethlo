@@ -38,3 +38,14 @@ export default function Home() {
     </main>
   );
 }
+export const metadata = {
+  title: "Home",
+  description: "Welcome to Bethlehem Lutheran Church. Join us for worship each Sunday at 9 AM.",
+  keywords: ["Bethlehem Lutheran Church", "Home", "Worship", "Service", "Baudette", "Minnesota", "LCMS"],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Home",
+    url: "/",
+    images: ["/og-default.jpg"],
+  },
+};

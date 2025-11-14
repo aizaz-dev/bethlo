@@ -35,3 +35,10 @@ export default function BelievePage() {
     </main>
   );
 }
+export const metadata = {
+  title: "What We Believe",
+  description: "Our confession of faith and core Lutheran beliefs at Bethlehem Lutheran Church.",
+  keywords: ["Beliefs", "Doctrine", "Lutheran", "LCMS", "Confession", "Faith", "Bethlehem Lutheran Church"],
+  alternates: { canonical: "/about/belief" },
+  openGraph: { title: "What We Believe", url: "/about/belief", images: ["/og-default.jpg"] },
+};
