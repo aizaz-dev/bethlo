@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-// Helper: Generate dynamic weeks for any month/year
 function generateCalendar(year, month) {
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -18,9 +17,7 @@ function generateCalendar(year, month) {
   let day = 7 - firstDay + 1;
   while (day <= daysInMonth) {
     week = new Array(7).fill("");
-    for (let i = 0; i < 7 && day <= daysInMonth; i++) {
-      week[i] = day++;
-    }
+    for (let i = 0; i < 7 && day <= daysInMonth; i++) week[i] = day++;
     weeks.push(week);
   }
 
@@ -35,14 +32,14 @@ export default function CalendarPage() {
   ];
 
   const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(10); // November (0-indexed)
+  const [month, setMonth] = useState(10);
 
   const events = {
-    "2025-10-02": "Daylight Saving Time ends",
-    "2025-10-04": "Election Day",
-    "2025-10-11": "Veterans Day",
-    "2025-10-27": "Thanksgiving Day",
-    "2025-10-28": "Black Friday",
+    "2025-11-02": "Daylight Saving Time ends",
+    "2025-11-04": "Election Day",
+    "2025-11-11": "Veterans Day",
+    "2025-11-27": "Thanksgiving Day",
+    "2025-11-28": "Black Friday",
   };
 
   const calendar = generateCalendar(year, month);
@@ -61,20 +58,18 @@ export default function CalendarPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-text-primary">
-      {/* Top Heading */}
-      <h1 className="text-3xl font-semibold text-primary mb-4 shadow-text-light">
+    <main className="max-w-7xl pt-16 md:pt-55 mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12 text-calendar-main-text">
+      <h1 className="text-2xl sm:text-3xl font-light mb-6 md:mb-8 text-text-primary">
         Calendar
       </h1>
 
-      {/* Month + Year Row */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-text-primary">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+        <h2 className="text-lg sm:text-xl font-medium text-text-primary">
           {monthNames[month]} {year}
         </h2>
 
         <select
-          className="border border-border-light rounded text-sm px-3 py-2 bg-bg-card text-text-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="border border-select-border rounded px-3 py-2 text-sm bg-select-bg w-full sm:w-auto"
           value={`${month}-${year}`}
           onChange={handleMonthChange}
         >
@@ -86,75 +81,59 @@ export default function CalendarPage() {
         </select>
       </div>
 
-      {/* Calendar Table */}
-      <div className="overflow-x-auto border border-border-light rounded-md shadow-card-light bg-bg-card">
-        <table className="w-full border-collapse text-[13px]">
+      <div className="overflow-x-auto bg-bg-card border border-calendar-border rounded-md">
+        <table className="w-full text-xs sm:text-[13px] border-collapse min-w-[600px]">
           <thead>
-            <tr className="bg-bg-light text-text-secondary">
-              {[
-                "SUNDAY",
-                "MONDAY",
-                "TUESDAY",
-                "WEDNESDAY",
-                "THURSDAY",
-                "FRIDAY",
-                "SATURDAY",
-              ].map((day) => (
-                <th
-                  key={day}
-                  className="text-left py-2 px-3 border border-border-light font-semibold uppercase"
+            <tr className="bg-calendar-header text-black dark:text-white">
+              {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((day) => (
+                <th 
+                  key={day} 
+                  className="py-2 px-1 sm:px-3 text-center border border-calendar-border text-[11px] sm:text-[12px] font-semibold uppercase"
                 >
                   {day}
                 </th>
               ))}
             </tr>
           </thead>
+
           <tbody>
             {calendar.map((week, i) => (
               <tr key={i}>
                 {week.map((day, j) => {
-                  const dateKey = `${year}-${month}-${day < 10 ? "0" + day : day}`;
+                  const dateKey = `${year}-${(month + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
                   const event = events[dateKey];
-                  const isToday = year === 2025 && month === 10 && day === 12;
+                  const isHighlight = dateKey === "2025-11-14";
+
+                  if (!day) {
+                    return (
+                      <td
+                        key={j}
+                        className="h-16 sm:h-20 md:h-24 align-top border border-calendar-border p-0 bg-calendar-bg"
+                      />
+                    );
+                  }
 
                   return (
                     <td
                       key={j}
-                      className={`align-top h-28 w-[14.28%] border border-border-light p-2 transition ${
-                        isToday
-                          ? "bg-primary text-white"
-                          : "bg-bg-light hover:bg-bg-hover"
-                      }`}
+                      className="h-16 sm:h-20 md:h-24 align-top border border-calendar-border p-0 bg-bg-card"
                     >
-                      {day && (
-                        <>
-                          <div
-                            className={`text-sm font-semibold mb-1 ${
-                              isToday ? "text-white" : "text-text-primary"
-                            }`}
-                          >
+                      <div className="h-full flex flex-col">
+                        <div className={`p-1 sm:p-2 ${isHighlight ? "bg-primary" : "bg-calendar-bg"}`}>
+                          <span className={`text-xs sm:text-sm font-semibold ${isHighlight ? "text-white" : "text-date-text"}`}>
                             {day}
-                          </div>
-                          {event && (
+                          </span>
+                        </div>
+
+                        {event && (
+                          <div className="flex-1 p-1 sm:p-2">
                             <div className="text-xs leading-tight">
-                              <p
-                                className={`font-bold ${
-                                  isToday ? "text-white" : "text-text-secondary"
-                                }`}
-                              >
-                                ALL DAY
-                              </p>
-                              <p
-                                className={`${
-                                  isToday ? "text-white" : "text-text-primary"
-                                }`}
-                              >
-                                {event}
-                              </p>
+                              <p className="font-bold text-event-text">ALL DAY</p>
+                              <p className="text-date-text truncate">{event}</p>
                             </div>
-                          )}
-                        </>
-                      )}
+                          </div>
+                        )}
+                      </div>
                     </td>
                   );
                 })}

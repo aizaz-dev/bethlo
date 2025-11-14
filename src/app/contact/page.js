@@ -5,7 +5,7 @@ export default function ContactPage() {
   const [activeTab, setActiveTab] = useState("contact");
 
   return (
-    <main className="flex pt-50 items-center justify-center text-text-primary px-4 py-10 transition-colors">
+    <main className="flex pt-55 items-center justify-center text-text-primary px-4 py-10 transition-colors">
       <div className="bg-bg-card rounded-lg shadow-card-light dark:shadow-card-dark w-full max-w-7xl">
         
         {/* Tabs */}

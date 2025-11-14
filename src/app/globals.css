@@ -13,38 +13,51 @@ html, body {
 }
 
 /* =========================
-   Global Fonts & Typography
-   ========================= */
-body, button, input, select, textarea {
-  font-family: "Open Sans", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  text-transform: none;
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-/* =========================
    Theme Variables
    ========================= */
 @theme {
   /* 🎨 Light Theme — Based on Elementor Palette */
-  --color-primary: #707070; /* heading / strong text */
+  --color-primary: #707070;
   --color-secondary: #B7B4B4;
-  --color-text-primary: #707070; /* main text color */
+  --color-text-primary: #707070;
   --color-text-secondary: #A5A5A5;
-  --color-accent: #1e73be; /* brand blue accent */
-
-  --color-bg-primary: #ffffff; /* main background */
+  --color-accent: #1e73be;
+  --color-navbarbg: #8CA0C4;
+  --color-bg-primary: #ffffff;
   --color-bg-secondary: #f7f8f9;
-  --color-bg-header: #f0f0f0; /* subtle gray header */
+  --color-bg-header: #f0f0f0;
   --color-bg-card: #ffffff;
-
   --color-border-primary: #B7B4B4;
   --color-border-secondary: #e5e7eb;
+  
+  /* Calendar Specific Colors */
+  --color-calendar-header: #D9DCDF;
+  --color-calendar-bg: #F0F3F6;
+  --color-calendar-border: #ebebeb;
+  --color-event-text: #5e6b7c;
+  --color-date-text: #2d2d2d;
+  --color-calendar-main-text: #3b3b3b;
+  --color-calendar-title: #2d2d2d;
+  --color-select-border: #d1d5db;
+  --color-select-bg: #ffffff;
+  
+  /* Footer Specific Colors */
+  --color-footer-bg: #424242;
+  --color-footer-text: #ffffff;
+  --color-footer-border: #e5e7eb;
+  --color-footer-icon: #ffffff;
+  --color-footer-heading: #ffffff;
+  --color-footer-accent: #1e73be;
+  --color-footer-map-border: #e5e7eb;
 
-  /* Depth and shadows */
-  --shadow-text-light: 0 1px 1px rgba(0, 0, 0, 0.06);
-  --shadow-card-light: 0 2px 5px rgba(0, 0, 0, 0.05);
+  /* Navbar Specific Colors */
+  --color-navbar-text: #ffffff;
+  --color-navbar-hover: #6b84b4;
+  --color-navbar-dropdown: #ffffff;
+  --color-navbar-dropdown-text: #707070;
+  --color-navbar-dropdown-hover: #f7f8f9;
+  --color-navbar-active: #76C7CF;
+  --color-navbar-mobile-bg: #97A8C4;
 }
 
 /* =========================
@@ -52,39 +65,92 @@ body, button, input, select, textarea {
    ========================= */
 @layer base {
   [data-theme="light"] {
-    --color-primary: #202020;
+    --color-primary: #707070;
     --color-secondary: #B7B4B4;
     --color-text-primary: #707070;
     --color-text-secondary: #A5A5A5;
     --color-accent: #1e73be;
-
+    --color-navbarbg: #8CA0C4;
     --color-bg-primary: #ffffff;
     --color-bg-secondary: #f7f8f9;
     --color-bg-header: #f0f0f0;
     --color-bg-card: #ffffff;
-
     --color-border-primary: #B7B4B4;
     --color-border-secondary: #e5e7eb;
+    
+    /* Calendar Specific Colors - Light Theme */
+    --color-calendar-header: #D9DCDF;
+    --color-calendar-bg: #F0F3F6;
+    --color-calendar-border: #ebebeb;
+    --color-event-text: #5e6b7c;
+    --color-date-text: #2d2d2d;
+    --color-calendar-main-text: #3b3b3b;
+    --color-calendar-title: #2d2d2d;
+    --color-select-border: #d1d5db;
+    --color-select-bg: #ffffff;
+    
+    /* Footer Specific Colors - Light Theme */
+    --color-footer-bg: #424242;
+    --color-footer-text: #ffffff;
+    --color-footer-border: #e5e7eb;
+    --color-footer-icon: #ffffff;
+    --color-footer-heading: #ffffff;
+    --color-footer-accent: #1e73be;
+    --color-footer-map-border: #e5e7eb;
+
+    /* Navbar Specific Colors - Light Theme */
+    --color-navbar-text: #ffffff;
+    --color-navbar-hover: #6b84b4;
+    --color-navbar-dropdown: #ffffff;
+    --color-navbar-dropdown-text: #707070;
+    --color-navbar-dropdown-hover: #f7f8f9;
+    --color-navbar-active: #76C7CF;
+    --color-navbar-mobile-bg: #97A8C4;
   }
 
   [data-theme="dark"] {
-    /* 🌙 Dark Theme — soft inverse of light palette */
-    --color-primary: #f5f5f5;
+    /* Main Colors - Dark Theme */
+    --color-primary: #e5e5e5;
     --color-secondary: #a0a0a0;
-    --color-text-primary: #e0e0e0;
-    --color-text-secondary: #bcbcbc;
-    --color-accent: #61CE70; /* green accent from Elementor palette */
+    --color-text-primary: #e5e5e5;
+    --color-text-secondary: #b0b0b0;
+    --color-accent: #4a90e2;
+    --color-navbarbg: #2d3748;
+    --color-bg-primary: #1a202c;
+    --color-bg-secondary: #2d3748;
+    --color-bg-header: #2d3748;
+    --color-bg-card: #2d3748;
+    --color-border-primary: #4a5568;
+    --color-border-secondary: #4a5568;
+    
+    /* Calendar Specific Colors - Dark Theme */
+    --color-calendar-header: #4a5568;
+    --color-calendar-bg: #2d3748;
+    --color-calendar-border: #4a5568;
+    --color-event-text: #cbd5e0;
+    --color-date-text: #e5e5e5;
+    --color-calendar-main-text: #e5e5e5;
+    --color-calendar-title: #f7fafc;
+    --color-select-border: #4a5568;
+    --color-select-bg: #2d3748;
+    
+    /* Footer Specific Colors - Dark Theme */
+    --color-footer-bg: #2d3748;
+    --color-footer-text: #e5e5e5;
+    --color-footer-border: #4a5568;
+    --color-footer-icon: #e5e5e5;
+    --color-footer-heading: #ffffff;
+    --color-footer-accent: #4a90e2;
+    --color-footer-map-border: #4a5568;
 
-    --color-bg-primary: #202020;
-    --color-bg-secondary: #2a2a2a;
-    --color-bg-header: #333333;
-    --color-bg-card: #2a2a2a;
-
-    --color-border-primary: #444;
-    --color-border-secondary: #3a3a3a;
-
-    --shadow-text-dark: 0 1px 3px rgba(0, 0, 0, 0.6);
-    --shadow-card-dark: 0 2px 8px rgba(0, 0, 0, 0.7);
+    /* Navbar Specific Colors - Dark Theme */
+    --color-navbar-text: #e5e5e5;
+    --color-navbar-hover: #4a5568;
+    --color-navbar-dropdown: #2d3748;
+    --color-navbar-dropdown-text: #e5e5e5;
+    --color-navbar-dropdown-hover: #4a5568;
+    --color-navbar-active: #3182ce;
+    --color-navbar-mobile-bg: #374151;
   }
 }
 
@@ -110,98 +176,4 @@ html, body, [data-theme] {
     color 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
-}
-
-/* =========================
-   Prose & Typography
-   ========================= */
-@layer components {
-  .prose {
-    max-width: 100%;
-  }
-
-  .prose p {
-    margin-bottom: 1.15em;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  .prose h1, .prose h2, .prose h3, .prose h4 {
-    color: var(--color-text-primary);
-    text-shadow: var(--shadow-text-light);
-  }
-
-  [data-theme="dark"] .prose h1,
-  [data-theme="dark"] .prose h2,
-  [data-theme="dark"] .prose h3,
-  [data-theme="dark"] .prose h4 {
-    text-shadow: var(--shadow-text-dark);
-  }
-
-  .prose h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .prose h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .prose a {
-    text-decoration: underline;
-    color: var(--color-accent);
-    transition: color 0.3s ease;
-  }
-
-  .prose a:hover {
-    color: #1b5fa3; /* darker blue on hover */
-  }
-
-  .prose hr {
-    border-color: var(--color-border-secondary);
-    opacity: 0.5;
-  }
-
-  .prose blockquote {
-    border-left: 3px solid var(--color-accent);
-    color: var(--color-text-secondary);
-    padding-left: 1rem;
-    font-style: italic;
-  }
-
-  .prose code {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-  }
-
-  .prose pre {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-    padding: 1rem;
-    border-radius: 10px;
-    overflow-x: auto;
-  }
-
-  .prose table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--color-border-secondary);
-  }
-
-  .prose th, .prose td {
-    border-bottom: 1px solid var(--color-border-secondary);
-    padding: 0.75rem 1rem;
-  }
-
-  .prose thead {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-  }
 }

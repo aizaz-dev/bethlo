@@ -14,7 +14,7 @@ export default function CommunionPage() {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-50 text-text-primary leading-relaxed">
+    <main className="max-w-7xl mx-auto px-6 sm:px-8 py-12 pt-20 text-text-primary leading-relaxed md:pt-55">
       <h2 className="text-lg mb-3 text-text-primary">
         Communing with Us
       </h2>
